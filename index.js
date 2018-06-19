@@ -19,7 +19,11 @@ git.getRemotes(true,(err,data) => {
   for (let item of data){
     console.log(`${item.name}==${remote}`)
     if(item.name==remote) {
+      console.log("found origin")
+      console.log(item.refs.fetch)
       remoteURI = item.refs.fetch.toLowerCase()
+      console.log(remoteURI)
+      console.log("_______")
     }
   }
 })
