@@ -17,7 +17,7 @@ git.branchLocal((err, data) => {
 
 git.getRemotes(true,(err,data) => {
   for (let item of data){
-    if(item.name===remote) {
+    if(item.name==remote) {
       remoteURI = item.refs.fetch.toLowerCase()
     }
   }
