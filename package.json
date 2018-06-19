@@ -1,5 +1,5 @@
 {
-  "name": "gitpush",
+  "name": "gitpush2",
   "version": "1.0.0",
   "description": "Single line to pull, commit, and push to git",
   "bin": {
