@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 let userArgs = process.argv.slice(2);
 const git = require('simple-git')('.');
+const fn = require('./functions');
 
 let branch = "master"
 let remote = "origin"
@@ -14,18 +15,9 @@ git.branchLocal((err, data) => {
     branch = data.current;
   }
 });
-
-git.getRemotes(true,(err,data) => {
-  for (let item of data){
-    console.log(`${item.name}==${remote}`)
-    if(item.name==remote) {
-      console.log("found origin")
-      console.log(item.refs.fetch)
-      remoteURI = item.refs.fetch.toLowerCase()
-      console.log(remoteURI)
-      console.log("_______")
-    }
-  }
+git.outputHandler((command, stdout, stderr) => {
+  // stdout.pipe(process.stdout);
+  stderr.pipe(process.stderr);
 })
 
 if(userArgs.length === 3){
@@ -46,29 +38,14 @@ else if(userArgs.length === 2){
   console.log('\x1b[0m',"")
   process.exit(0);
 }
-console.log("Remote uri:")
-console.log(remoteURI)
-if(remoteURI.indexOf('http') >= 0) {
-  console.log('\x1b[31m',"This script only works with SSH")
-  console.log('\x1b[0m',"")
-  process.exit(0);
-}
 
-git.outputHandler((command, stdout, stderr) => {
-  stdout.pipe(process.stdout);
-  stderr.pipe(process.stderr);
+git.getRemotes(true,(err,data) => {
+  for (let item of data){
+    if(item.name===remote) {
+      remoteURI = item.refs.fetch.toLowerCase()
+    }
+    fn.doPullandPush(git,remoteURI,remote,branch,commit)
+  }
 })
 
-git.add('.')
-git.commit(commit)
-try {
-  git.pull(remote,branch ,(err, data) => {
-    if(err) {
-      console.log('\x1b[36m%s\x1b[0m',`New branch`)
-      git.push([remote, branch], () => console.log('\x1b[36m%s\x1b[0m',`Done`));
-    }
-  })
-} catch (e) {
-  console.log('\x1b[36m%s\x1b[0m',`New branch`)
-}
-git.push([remote, branch], () => console.log('\x1b[36m%s\x1b[0m',`Done`));
+
