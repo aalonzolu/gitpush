@@ -41,6 +41,7 @@ else if(userArgs.length === 2){
   console.log('\x1b[0m',"")
   process.exit(0);
 }
+console.log("Remote uri:")
 console.log(remoteURI)
 if(remoteURI.indexOf('http') >= 0) {
   console.log('\x1b[31m',"This script only works with SSH")
