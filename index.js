@@ -41,7 +41,7 @@ git.outputHandler((command, stdout, stderr) => {
 git.add('.')
 git.commit(commit)
 git.pull(remote,branch ,(err, data) => {
-  console.log(err)
   console.log(data)
+  console.log(err)
 })
 git.push([remote, branch], () => console.log('\x1b[36m%s\x1b[0m',`Done`));
