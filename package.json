@@ -1,0 +1,17 @@
+{
+  "name": "gitpush",
+  "version": "1.0.0",
+  "description": "Push to git on a sigle line",
+  "bin": {
+    "gitpush": "index.js"
+  },
+  "keywords": [
+    "git",
+    "push"
+  ],
+  "author": "LExo Alonzo <lexo@io.gt> (http://lexo.io.gt)",
+  "license": "ISC",
+  "dependencies": {
+    "simple-git": "^1.96.0"
+  }
+}
