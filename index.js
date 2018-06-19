@@ -16,7 +16,6 @@ git.branchLocal((err, data) => {
 });
 
 git.getRemotes(true,(err,data) => {
-  console.log(data)
   for (let item of data){
     if(item.name===remote) {
       remoteURI = item.refs.fetch.toLowerCase()
@@ -42,7 +41,7 @@ else if(userArgs.length === 2){
   console.log('\x1b[0m',"")
   process.exit(0);
 }
-
+console.log(remoteURI)
 if(remoteURI.indexOf('http') >= 0) {
   console.log('\x1b[31m',"This script only works with SSH")
   console.log('\x1b[0m',"")
