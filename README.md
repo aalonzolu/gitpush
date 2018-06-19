@@ -1,4 +1,5 @@
 # gitpush
+Single line to pull, commit, and push to git
 
 ## Install
 - Linux/OSX `sudo npm install -g gitpush2`
