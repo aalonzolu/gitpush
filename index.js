@@ -5,6 +5,7 @@ const git = require('simple-git')('.');
 let branch = "master"
 let remote = "origin"
 let commit = "commit message"
+let remoteURI = ""
 
 // set current branch
 git.branchLocal((err, data) => {
@@ -13,6 +14,15 @@ git.branchLocal((err, data) => {
     branch = data.current;
   }
 });
+
+git.getRemotes(true,(err,data) => {
+  console.log(data)
+  for (let item of data){
+    if(item.name===remote) {
+      remoteURI = item.refs.fetch.toLowerCase()
+    }
+  }
+})
 
 if(userArgs.length === 3){
   remote = userArgs[0]
@@ -25,10 +35,16 @@ else if(userArgs.length === 2){
 } else if(userArgs.length === 1) {
   commit = userArgs[0]
 } else {
-  console.log('\x1b[36m%s\x1b[0m',"Formas de Uso:")
-  console.log('\x1b[36m%s\x1b[0m',"- gitpush \"Mensaje Commit\"")
-  console.log('\x1b[36m%s\x1b[0m',"- gitpush [origin] \"Mensaje Commit\"")
+  console.log('\x1b[36m%s\x1b[0m',"Usage:")
+  console.log('\x1b[36m%s\x1b[0m',"- gitpush \"Commit Message\"")
+  console.log('\x1b[36m%s\x1b[0m',"- gitpush [origin] \"Commit Message\"")
   // console.log('\x1b[36m%s\x1b[0m',"- gitpush [origin] [master] \"Mensaje Commit\"")
+  console.log('\x1b[0m',"")
+  process.exit(0);
+}
+
+if(remoteURI.indexOf('http') >= 0) {
+  console.log('\x1b[31m',"This script only works with SSH")
   console.log('\x1b[0m',"")
   process.exit(0);
 }
