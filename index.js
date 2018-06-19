@@ -41,7 +41,11 @@ git.outputHandler((command, stdout, stderr) => {
 git.add('.')
 git.commit(commit)
 try {
-  git.pull(remote,branch)
+  git.pull(remote,branch ,(err, data) => {
+    if(err) {
+      console.log('\x1b[36m%s\x1b[0m',`New branch`)
+    }
+  })
 } catch (e) {
   console.log('\x1b[36m%s\x1b[0m',`New branch`)
 }
