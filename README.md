@@ -5,5 +5,5 @@
 - Windows: `npm install -g gitpush2`
 
 ## Usage:
-- gitpush "Commit Message"
-- gitpush [origin] "Commit Message"
+- `gitpush "Commit Message"`
+- `gitpush [origin] "Commit Message"`
