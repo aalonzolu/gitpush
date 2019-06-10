@@ -9,11 +9,12 @@ exports.
   try {
     git.pull(remote,branch ,(err, data) => {
       if(err) {
-        //console.log('\x1b[36m%s\x1b[0m',`New branch`)
-        git.push([remote, branch], () => console.log('\x1b[36m%s\x1b[0m',`Done`));
+        console.log('\x1b[36m%s\x1b[0m',`Error while git pull`)
+//         git.push([remote, branch], () => console.log('\x1b[36m%s\x1b[0m',`Done`));
       }
     })
   } catch (e) {
+    console.log('\x1b[36m%s\x1b[0m',`Error while git pull`)
     //console.log('\x1b[36m%s\x1b[0m',`New branch`)
   }
   git.add('.')
