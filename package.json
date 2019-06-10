@@ -1,7 +1,7 @@
 {
   "name": "gitpush2",
   "version": "1.1.1",
-  "description": "Single line to pull, commit, and push to git",
+  "description": "Single line to pull, add, commit, and push to git",
   "bin": {
     "gitpush": "index.js"
   },
