@@ -11,7 +11,7 @@ let remoteURI = ""
 // set current branch
 git.branchLocal((err, data) => {
   if (!err) {
-    console.log('\x1b[36m%s\x1b[0m',`Working on branch ${data.current}`)
+    //console.log('\x1b[36m%s\x1b[0m',`Working on branch ${data.current}`)
     branch = data.current;
   }
 });
