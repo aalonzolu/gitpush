@@ -12,6 +12,6 @@
   "author": "Lexo Alonzo <lexo@io.gt> (http://lexo.io.gt)",
   "license": "GNU",
   "dependencies": {
-    "simple-git": "^3.5.0"
+    "simple-git": "^3.15.0"
   }
 }
